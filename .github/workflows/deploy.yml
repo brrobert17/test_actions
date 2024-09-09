@@ -14,8 +14,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Fetch latest changes
-        run: git fetch --all
       # Step 2: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3

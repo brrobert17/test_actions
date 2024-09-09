@@ -5,7 +5,7 @@ const { execSync } = require('child_process');
 // List of directories to exclude from upload
 const EXCLUDED_DIRS = ['workflow_modules', '.git', '.github', '.gitignore', 'node_modules', 'gallery', 'pdf'];
 
-
+execSync('git fetch --all');
 // Function to get the last pushed commit from the tag
 function getLastPushedCommit() {
     try {
