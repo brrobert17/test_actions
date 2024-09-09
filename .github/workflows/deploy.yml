@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - master
+permissions:
+  contents: write
 
 jobs:
   build-and-deploy:
@@ -21,7 +23,6 @@ jobs:
       - name: Fetch tag
         run: git fetch --depth=1 origin tag last-lw
 
-      # Step 2: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
