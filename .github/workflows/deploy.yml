@@ -16,14 +16,11 @@ jobs:
       - name: Fetch tag
         run: git fetch --depth=1 origin tag last-lw
 
-      - name: Check tag
-        run: git describe --tags --abbrev=0
-
       # Step 2: Set up Node.js
-#      - name: Set up Node.js
-#        uses: actions/setup-node@v3
-#        with:
-#          node-version: '20'
-#
-#      - name: Run OSS Upload Script
-#        run: node uploadToOSS.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Run OSS Upload Script
+        run: node uploadToOSS.js

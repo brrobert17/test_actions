@@ -33,6 +33,7 @@ function setLastPushedCommit() {
 
         // Tag the current commit as the last pushed commit
         execSync(`git tag last-lw ${currentCommit}`);
+        execSync(`git push origin last-lw`);
         console.log(`Set last-lw to ${currentCommit}`);
     } catch (err) {
         console.error('Error setting last pushed commit:', err);
