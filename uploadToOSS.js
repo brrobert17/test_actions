@@ -25,6 +25,7 @@ function setLastPushedCommit() {
         // Delete the old tag if it exists
         try {
             execSync(`git tag -d last-lw`);
+            execSync(`git push origin :refs/tags/last-lw`);
             console.log(`Deleted previous last-lw`);
         } catch (err) {
             // If the tag doesn't exist, we can safely ignore this error
