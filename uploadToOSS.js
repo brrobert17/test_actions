@@ -17,6 +17,7 @@ const repoUrl = `https://x-access-token:${GITHUB_TOKEN}@github.com/${process.env
 try {
     // Configure git to use the GitHub token
     execSync(`git remote set-url origin ${repoUrl}`);
+    console.log('REPO SET' + process.env.GITHUB_REPOSITORY);
 } catch (error) {
     console.error(error);
 }
