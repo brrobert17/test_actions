@@ -28,4 +28,6 @@ jobs:
           node-version: '20'
 
       - name: Run OSS Upload Script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node uploadToOSS.js

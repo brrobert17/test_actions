@@ -2,9 +2,24 @@
 const path = require('path');
 const { execSync } = require('child_process');
 
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+
+if (!GITHUB_TOKEN) {
+    console.error('Error: GITHUB_TOKEN is not set');
+    process.exit(1);
+}
+
 // List of directories to exclude from upload
 const EXCLUDED_DIRS = ['workflow_modules', '.git', '.github', '.gitignore', 'node_modules', 'gallery', 'pdf'];
 
+const repoUrl = `https://x-access-token:${GITHUB_TOKEN}@github.com/${process.env.GITHUB_REPOSITORY}.git`;
+
+try {
+    // Configure git to use the GitHub token
+    execSync(`git remote set-url origin ${repoUrl}`);
+} catch (error) {
+    console.error(error);
+}
 // Function to get the last pushed commit from the tag
 function getLastPushedCommit() {
     try {
