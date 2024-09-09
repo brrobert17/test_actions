@@ -17,8 +17,8 @@ jobs:
           fetch-depth: 1
           fetch-tags: true
 
-      - name: Fetch specific tag last-lw
-        run: git fetch origin tag last-lw --no-tags
+      - name: Fetch tags
+        run: git fetch --tags
 
       # Step 2: Set up Node.js
       - name: Set up Node.js
