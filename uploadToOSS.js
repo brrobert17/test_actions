@@ -1,4 +1,4 @@
-const OSS = require('./workflow_modules/node_modules/ali-oss');
+// const OSS = require('./workflow_modules/node_modules/ali-oss');
 const path = require('path');
 const { execSync } = require('child_process');
 
@@ -75,12 +75,12 @@ function getModifiedFiles() {
 
 // Main function to handle file upload to OSS
 async function uploadToOSS() {
-    const client = new OSS({
-        region: process.env.OSS_ENDPOINT,
-        accessKeyId: process.env.OSS_ACCESS_KEY_ID,
-        accessKeySecret: process.env.OSS_ACCESS_KEY_SECRET,
-        bucket: process.env.OSS_BUCKET,
-    });
+    // const client = new OSS({
+    //     region: process.env.OSS_ENDPOINT,
+    //     accessKeyId: process.env.OSS_ACCESS_KEY_ID,
+    //     accessKeySecret: process.env.OSS_ACCESS_KEY_SECRET,
+    //     bucket: process.env.OSS_BUCKET,
+    // });
 
     // Get the list of modified files using git diff or list all if it's the first run
     const modifiedFiles = getModifiedFiles();
@@ -96,8 +96,8 @@ async function uploadToOSS() {
 
         try {
             console.log(`Uploading ${filePath} as ${relativePath} to OSS...`);
-            const result = await client.put(relativePath, filePath);  // Upload file to OSS
-            console.log(`File uploaded: ${result.url}`);
+            // const result = await client.put(relativePath, filePath);  // Upload file to OSS
+            // console.log(`File uploaded: ${result.url}`);
         } catch (err) {
             console.error(`Error uploading ${relativePath}:`, err);
         }

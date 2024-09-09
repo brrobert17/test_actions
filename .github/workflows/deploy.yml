@@ -3,7 +3,7 @@ name: Deploy to Alibaba Cloud OSS
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build-and-deploy:
@@ -23,18 +23,18 @@ jobs:
           node-version: '20'
 
       # Step 3: Install workflow dependencies (OSS SDK)
-      - name: Install workflow dependencies (OSS SDK)
-        run: npm install ali-oss --prefix ./workflow_modules
+#      - name: Install workflow dependencies (OSS SDK)
+#        run: npm install ali-oss --prefix ./workflow_modules
 
       # Step 4: Set NODE_PATH
-      - name: Set NODE_PATH
-        run: export NODE_PATH=$NODE_PATH:./workflow_modules/node_modules
+#      - name: Set NODE_PATH
+#        run: export NODE_PATH=$NODE_PATH:./workflow_modules/node_modules
 
       # Step 5: Run OSS Upload Script
       - name: Run OSS Upload Script
-        env:
-          OSS_ACCESS_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
-          OSS_ACCESS_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
-          OSS_BUCKET: ${{ secrets.OSS_BUCKET }}
-          OSS_ENDPOINT: ${{ secrets.OSS_ENDPOINT }}
+#        env:
+#          OSS_ACCESS_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
+#          OSS_ACCESS_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
+#          OSS_BUCKET: ${{ secrets.OSS_BUCKET }}
+#          OSS_ENDPOINT: ${{ secrets.OSS_ENDPOINT }}
         run: node uploadToOSS.js
