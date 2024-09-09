@@ -5,16 +5,14 @@ const { execSync } = require('child_process');
 // List of directories to exclude from upload
 const EXCLUDED_DIRS = ['workflow_modules', '.git', '.github', '.gitignore', 'node_modules', 'gallery', 'pdf'];
 
-/// Tag name to track the last push
-const LAST_PUSH_TAG = 'last-lw';
-// NEEW TEST + MAIN
+
 // Function to get the last pushed commit from the tag
 function getLastPushedCommit() {
     try {
         // Check if the tag exists
-        return execSync(`git rev-parse ${LAST_PUSH_TAG}`).toString().trim();
+        return execSync(`git rev-parse last-lw`).toString().trim();
     } catch (err) {
-        console.log(`Tag ${LAST_PUSH_TAG} not found, assuming this is the first run.`);
+        console.log(`Tag not found, assuming this is the first run.`);
         return null;
     }
 }
@@ -27,16 +25,16 @@ function setLastPushedCommit() {
 
         // Delete the old tag if it exists
         try {
-            execSync(`git tag -d ${LAST_PUSH_TAG}`);
-            console.log(`Deleted previous ${LAST_PUSH_TAG}`);
+            execSync(`git tag -d last-lw`);
+            console.log(`Deleted previous last-lw`);
         } catch (err) {
             // If the tag doesn't exist, we can safely ignore this error
-            console.log(`${LAST_PUSH_TAG} did not exist, creating a new one.`);
+            console.log(`last-lw did not exist, creating a new one.`);
         }
 
         // Tag the current commit as the last pushed commit
-        execSync(`git tag ${LAST_PUSH_TAG} ${currentCommit}`);
-        console.log(`Set ${LAST_PUSH_TAG} to ${currentCommit}`);
+        execSync(`git tag last-lw ${currentCommit}`);
+        console.log(`Set last-lw to ${currentCommit}`);
     } catch (err) {
         console.error('Error setting last pushed commit:', err);
     }
@@ -62,7 +60,7 @@ function getModifiedFiles() {
             changedFiles = execSync('git ls-files').toString().split('\n');
         } else {
             // Get the list of files changed from the last pushed commit to the current HEAD
-            changedFiles = execSync(`git diff --name-only ${lastPushedCommit} HEAD`).toString().split('\n');
+            changedFiles = execSync(`git diff --name-only last-lw HEAD`).toString().split('\n');
         }
 
         // Filter out empty lines and files in EXCLUDED_DIRS
