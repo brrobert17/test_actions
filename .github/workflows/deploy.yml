@@ -13,9 +13,9 @@ jobs:
       # Step 1: Checkout the repository with the last two commits
       - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 2  # Fetch the last two commits
 
+      - name: Fetch latest changes
+        run: git fetch --all
       # Step 2: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
