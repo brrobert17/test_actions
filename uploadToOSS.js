@@ -4,7 +4,7 @@ const { execSync } = require('child_process');
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
-if (!GITHUB_TOKEN) {
+if (!GITHUB_TOKEN || !process.env.GITHUB_REPOSITORY) {
     console.error('Error: GITHUB_TOKEN is not set');
     process.exit(1);
 }
