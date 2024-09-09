@@ -15,11 +15,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Configure git
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"  
-
       - name: Fetch tag
         run: git fetch --depth=1 origin tag last-lw
 
@@ -29,6 +24,4 @@ jobs:
           node-version: '20'
 
       - name: Run OSS Upload Script
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node uploadToOSS.js
